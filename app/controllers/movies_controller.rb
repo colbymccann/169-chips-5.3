@@ -7,12 +7,10 @@ class MoviesController < ApplicationController
   end
 
   def index
-    binding.pry
+    @movies = Movie.all
     @all_ratings = Movie.all_ratings
-    ratings_list = params[:ratings]
-    ratings = ratings_list.keys
     @ratings_to_show = []
-    @movies = Movie.with_ratings(ratings)
+    @movies = Movie.with_ratings(ratings_to_show)
   end
 
   def new
