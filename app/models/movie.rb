@@ -5,7 +5,7 @@ class Movie < ActiveRecord::Base
   # if ratings_list is nil, retrieve ALL movies
      where(ratings_list.contains("rating"))
   end
-  def self.all_ratings()
+  def self.all_ratings
     ['G','PG','PG-13','R']
   end
 end
