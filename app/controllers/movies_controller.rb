@@ -7,6 +7,7 @@ class MoviesController < ApplicationController
   end
 
   def index
+    binding.pry
     @all_ratings = Movie.all_ratings
     ratings_list = params[:ratings]
     ratings = ratings_list.keys
