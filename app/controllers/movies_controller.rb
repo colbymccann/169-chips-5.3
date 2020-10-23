@@ -7,10 +7,8 @@ class MoviesController < ApplicationController
   end
 
   def index
-    byebug
     @all_ratings = Movie.all_ratings
     @ratings_to_show = []
-    logger.debug
     ratings_list = params[:ratings]
     ratings = ratings_list.keys
     @movies = Movie.with_ratings(ratings)
