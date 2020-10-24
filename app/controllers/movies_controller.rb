@@ -15,6 +15,7 @@ class MoviesController < ApplicationController
     end
     @all_ratings = Movie.all_ratings
     @movies = Movie.with_ratings(ratings)
+    redirect_to movies_path
   end
 
   def new
