@@ -12,8 +12,6 @@ class MoviesController < ApplicationController
     else
       @ratings_to_show = []
     end
-    hi = 1 # needed to add something to push to github
-    @movies = Movie.all
     @all_ratings = Movie.all_ratings
     @movies = Movie.with_ratings(@ratings_to_show)
   end
