@@ -21,11 +21,11 @@ class MoviesController < ApplicationController
       if params[:sort] == "title"
         puts("sorted title")
         @sort_title = true
-        @movies = Movie.sort_by_title()
+        @movies = Movie.order_by_title()
       elsif params[:sort] == "release"
         puts("sorted release")
         @sort_release = true
-        @movies = Movie.sort_by_release()
+        @movies = Movie.order_by_release()
       end
     else 
       @movies = Movie.with_ratings(ratings)
