@@ -9,6 +9,12 @@ class Movie < ActiveRecord::Base
        Movie.all
      end
   end
+  def self.order_by_release()
+    Movie.order("release_date")
+  end
+  def self.order_by_title()
+    Movie.order("title")
+  end
   def self.all_ratings
     ['G','PG','PG-13','R']
   end

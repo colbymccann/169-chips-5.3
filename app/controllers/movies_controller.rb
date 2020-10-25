@@ -7,6 +7,7 @@ class MoviesController < ApplicationController
   end
 
   def index
+    @all_ratings = Movie.all_ratings
     if params[:ratings] != nil
       @ratings_to_show = params[:ratings].keys
       ratings = params[:ratings].keys
@@ -20,14 +21,15 @@ class MoviesController < ApplicationController
       if params[:sort] == "title"
         puts("sorted title")
         @sort_title = true
+        @movies = sort_by_title()
       elsif params[:sort] == "release"
         puts("sorted release")
         @sort_release = true
+        @movies = sort_by_release()
       end
     else 
+      @movies = Movie.with_ratings(ratings)
     end
-    @all_ratings = Movie.all_ratings
-    @movies = Movie.with_ratings(ratings)
   end
 
   def new
