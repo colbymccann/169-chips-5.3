@@ -15,6 +15,9 @@ class MoviesController < ApplicationController
     end
     if params[:sort] != nil
       @sort = params[:sort]
+      if params[:sort] = "title"
+        @sort_title = true
+      end
     else 
       @sort = "none"
     end
