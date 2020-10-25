@@ -18,8 +18,10 @@ class MoviesController < ApplicationController
       puts("oi!")
       puts(params[:sort])
       if params[:sort] = "title"
+        puts("sorted title")
         @sort_title = true
       elsif params[:sort] = "release"
+        puts("sorted release")
         @sort_release = true
       end
     else 
