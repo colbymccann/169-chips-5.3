@@ -17,9 +17,12 @@ class MoviesController < ApplicationController
       @sort = params[:sort]
       if params[:sort] = "title"
         @sort_title = true
+      elsif params[:sort] = "release"
+        @sort_release = true
       end
     else 
-      @sort = "none"
+      @sort_title = false
+      @sort_release = false
     end
     @all_ratings = Movie.all_ratings
     @movies = Movie.with_ratings(ratings)
