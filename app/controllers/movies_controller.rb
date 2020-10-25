@@ -13,6 +13,11 @@ class MoviesController < ApplicationController
     else
       @ratings_to_show = []
     end
+    if params[:sort] != nil
+      @sort = params[:sort]
+    else 
+      @sort = "none"
+    end
     @all_ratings = Movie.all_ratings
     @movies = Movie.with_ratings(ratings)
   end
