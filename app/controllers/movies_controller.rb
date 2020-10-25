@@ -8,8 +8,12 @@ class MoviesController < ApplicationController
 
   def index
     @all_ratings = Movie.all_ratings
+    @ratings_hash = []
     if params[:ratings] != nil
       @ratings_to_show = params[:ratings].keys
+      array = params[:ratings].keys
+      hash = Hash[array.collect { |item| [item, 1] } ]
+      @ratings_hash = hash
       ratings = params[:ratings].keys
     else
       @ratings_to_show = []
