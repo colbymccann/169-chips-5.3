@@ -44,7 +44,7 @@ class MoviesController < ApplicationController
       session[:ratings] = ratings
       @movies = Movie.with_ratings(ratings)
     end
-    if params[:sort] != nil
+    if (params[:sort] != nil)
       @sort = params[:sort]
       if params[:sort] == "title"
         @sort_title = true
