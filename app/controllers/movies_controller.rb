@@ -14,7 +14,6 @@ class MoviesController < ApplicationController
     case2 = (params[:ratings] == nil)&&(session[:ratings] != nil)
     case3 = (params[:ratings] != nil)&&(session[:ratings] == nil)
     case4 = (params[:ratings] != nil)&&(session[:ratings] != nil)
-    case
     
     if case3
       ratings = params[:ratings].keys
