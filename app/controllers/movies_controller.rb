@@ -10,15 +10,39 @@ class MoviesController < ApplicationController
     @all_ratings = Movie.all_ratings
     @ratings_hash = []
     @movies = Movie.all
-    if params[:ratings] != nil
-      @ratings_to_show = params[:ratings].keys
-      array = params[:ratings].keys
-      hash = Hash[array.collect { |item| [item, 1] } ]
-      @ratings_hash = hash
+    case1 = (params[:ratings] == nil)&&(session[:ratings] == nil)
+    case2 = (params[:ratings] == nil)&&(session[:ratings] != nil)
+    case3 = (params[:ratings] != nil)&&(session[:ratings] == nil)
+    case4 = (params[:ratings] != nil)&&(session[:ratings] != nil)
+    case
+    
+    if case3
       ratings = params[:ratings].keys
+      @ratings_to_show = ratings
+      hash = Hash[ratings.collect { |item| [item, 1] } ]
+      @ratings_hash = hash
+      session[:ratings] = ratings
       @movies = Movie.with_ratings(ratings)
-    else
+    elsif case1
       @ratings_to_show = []
+    elsif case2&&(params[:commit] == "Refresh")
+      session.delete(:ratings)
+      @movies = Movie.all
+      @ratings_to_show = []
+    elsif case2
+      ratings = session[:ratings]
+      @ratings_to_show = ratings
+      hash = Hash[ratings.collect { |item| [item, 1] } ]
+      @ratings_hash = hash
+      session[:ratings] = ratings
+      @movies = Movie.with_ratings(ratings)
+    elsif case4
+      ratings = params[:ratings].keys
+      @ratings_to_show = ratings
+      hash = Hash[ratings.collect { |item| [item, 1] } ]
+      @ratings_hash = hash
+      session[:ratings] = ratings
+      @movies = Movie.with_ratings(ratings)
     end
     if params[:sort] != nil
       @sort = params[:sort]
